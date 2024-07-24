@@ -9,6 +9,9 @@ namespace test_task_4_the_int
 {
     static class Tools
     {
+        /// <summary>
+        /// Returns the next available ID for an employee. If the "employees.json" file does not exist, returns -1.
+        /// </summary>
         public static int GetNextId()
         {
             try
@@ -25,6 +28,13 @@ namespace test_task_4_the_int
             }
         }
 
+        /// <summary>
+        /// Processes command-line parameters and options. It takes an array of command-line arguments, an array of expected parameters, and an array of expected options.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <param name="parameters"></param>
+        /// <param name="options"></param>
+        /// <returns>Dictionary of processed parameters.</returns>
         public static Dictionary<string, string> ProcessParameters(string[] args, string[] parameters, string[] options)
         {
             for (int i = 1; i < args.Length; i++)

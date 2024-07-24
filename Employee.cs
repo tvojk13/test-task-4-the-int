@@ -13,6 +13,10 @@ namespace test_task_4_the_int
         public string LastName { get; set; }
         public decimal SalaryPerHour { get; set; }
 
+        /// <summary>
+        /// Adds a new employee to the list of employees.
+        /// </summary>
+        /// <param name="parameters">A dictionary containing the employee's ID.</param>
         public static void AddEmployee(Dictionary<string, string> parameters)
         {
             int nextId = Tools.GetNextId();
@@ -36,6 +40,10 @@ namespace test_task_4_the_int
             JsonUtils.WriteAllEmployees(employees);
         }
 
+        /// <summary>
+        /// Updates an existing employee's details.
+        /// </summary>
+        /// <param name="parameters">A dictionary containing the employee's ID.</param>
         public static void UpdateEmployee(Dictionary<string, string> parameters)
         {
             int id = int.Parse(parameters["Id"]);
@@ -78,6 +86,10 @@ namespace test_task_4_the_int
             }
         }
 
+        /// <summary>
+        /// Retrieves the details of an employee by their ID.
+        /// </summary>
+        /// <param name="parameters">A dictionary containing the employee's ID.</param>
         public static void GetEmployeeById(Dictionary<string, string> parameters)
         {
             int id = int.Parse(parameters["Id"]);
@@ -97,6 +109,10 @@ namespace test_task_4_the_int
             return;
         }
 
+        /// <summary>
+        /// Deletes an employee by their ID.
+        /// </summary>
+        /// <param name="parameters">A dictionary containing the employee's ID.</param>
         public static void DeleteEmployeeById(Dictionary<string, string> parameters)
         {
             int id = int.Parse(parameters["Id"]);
@@ -125,6 +141,9 @@ namespace test_task_4_the_int
             return;
         }
 
+        /// <summary>
+        /// Retrieves and displays all employees.
+        /// </summary>
         public static void GetAllEmployees()
         {
             List<Employee> employees = JsonUtils.ReadAllEmployees();
