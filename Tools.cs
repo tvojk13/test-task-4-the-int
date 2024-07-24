@@ -11,15 +11,18 @@ namespace test_task_4_the_int
     {
         public static int GetNextId()
         {
-            if (!File.Exists("employees.json"))
+            try
             {
-                return 1;
+                string json = File.ReadAllText("employees.json");
+                List<Employee> employees = JsonConvert.DeserializeObject<List<Employee>>(json);
+
+                return employees.Count > 0 ? employees.Max(e => e.Id) + 1 : 1;
             }
-
-            string json = File.ReadAllText("employees.json");
-            List<Employee> employees = JsonConvert.DeserializeObject<List<Employee>>(json);
-
-            return employees.Count > 0 ? employees.Max(e => e.Id) + 1 : 1;
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
         }
 
         public static Dictionary<string, string> ProcessParameters(string[] args, string[] parameters, string[] options)

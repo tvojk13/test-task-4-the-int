@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace test_task_4_the_int
 {
-    class Employee
+    public class Employee
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -15,11 +15,21 @@ namespace test_task_4_the_int
 
         public static void AddEmployee(Dictionary<string, string> parameters)
         {
-            Employee employee = new Employee();
-            employee.Id = Tools.GetNextId();
-            employee.FirstName = parameters["FirstName"];
-            employee.LastName = parameters["LastName"];
-            employee.SalaryPerHour = decimal.Parse(parameters["SalaryPerHour"]);
+            int nextId = Tools.GetNextId();
+
+            if (nextId == -1)
+            {
+                Console.WriteLine("ERROR: employees.json file not found.");
+                return;
+            }
+
+            Employee employee = new Employee
+            {
+                Id = nextId,
+                FirstName = parameters["FirstName"],
+                LastName = parameters["LastName"],
+                SalaryPerHour = decimal.Parse(parameters["SalaryPerHour"])
+            };
 
             List<Employee> employees = JsonUtils.ReadAllEmployees();
             employees.Add(employee);
